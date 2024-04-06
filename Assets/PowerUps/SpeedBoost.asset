@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42448138d05d7b8489247754cedbaa8d, type: 3}
-  m_Name: RocketJump
+  m_Name: SpeedBoost
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   powerUpIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  powerUpName: Rocket Jump
-  powerUpMultiplier: 30
+  powerUpName: SpeedBoost
+  powerUpMultiplier: 40
