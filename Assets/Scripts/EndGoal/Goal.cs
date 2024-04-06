@@ -4,8 +4,9 @@ public class Goal : MonoBehaviour
 {
     [SerializeField] private GameObject LevelCompletePanel, PlayerUI;
     [SerializeField] private GameObject Player;
+    [SerializeField] TMPro.TextMeshProUGUI time;
 
-    private bool finishedLevel = false;
+    [HideInInspector]public bool finishedLevel = false;
 
     private void Update()
     {
@@ -24,6 +25,7 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         LevelCompletePanel.SetActive(true);
+        time.text = gameObject.GetComponent<StopWatch>().timerText.text;
         PlayerUI.SetActive(false);
 
         Player.GetComponent<BallMove>().canMove = false;
