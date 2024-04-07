@@ -13,6 +13,7 @@ public class Goal : MonoBehaviour
     {
         if (finishedLevel)
         {
+            Camera.main.GetComponent<CameraLook>().LevelBeat();
             Player.transform.RotateAround(rotateTarget.position, Vector3.up, 90 * Time.deltaTime);
         }
     }

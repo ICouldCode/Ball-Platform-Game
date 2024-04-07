@@ -7,16 +7,16 @@ public class CameraLook : MonoBehaviour
     public Transform ball;
     public Vector3 Offset;
 
-    private enum cursor
+    [HideInInspector] public enum Cur
     {
         PAUSED, PLAY
     }
 
-    private cursor curs;
+    [HideInInspector] public Cur curs;
 
     private void Awake()
     {
-        curs = cursor.PLAY;
+        curs = Cur.PLAY;
     }
 
     private void Update()
@@ -25,18 +25,23 @@ public class CameraLook : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(curs == cursor.PLAY)
+            if(curs == Cur.PLAY)
             {
                 ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                curs = cursor.PAUSED;
+                curs = Cur.PAUSED;
             }
             else
             {
-                curs = cursor.PLAY;
+                curs = Cur.PLAY;
             }
         }
 
-        if (curs == cursor.PLAY) { Cursor.lockState = CursorLockMode.Locked; }
-        else { Cursor.lockState = CursorLockMode.None; }
+        if (curs == Cur.PLAY) { UnityEngine.Cursor.lockState = CursorLockMode.Locked; }
+        else { UnityEngine.Cursor.lockState = CursorLockMode.None; }
+    }
+
+    public void LevelBeat()
+    {
+        curs = Cur.PAUSED;
     }
 }
