@@ -11,6 +11,7 @@ public class PlayerPowerUp : MonoBehaviour
         if( powerUp!= null)
         {
             powerUpIcon.sprite = powerUp.powerUpIcon;
+            powerUpIcon.color = new Color(255, 255, 255, 1);
             if (Input.GetKeyDown(KeyCode.V))
             {
                 UsePower();
@@ -22,6 +23,7 @@ public class PlayerPowerUp : MonoBehaviour
     {
         powerUp.UsePower();
         powerUpIcon.sprite = null;
+        powerUpIcon.color = new Color(255, 255, 255, 0);
         powerUp = null;
     }
 }

@@ -5,6 +5,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private GameObject LevelCompletePanel, PlayerUI;
     [SerializeField] private GameObject Player;
     [SerializeField] TMPro.TextMeshProUGUI time;
+    [SerializeField] private Transform rotateTarget;
 
     [HideInInspector]public bool finishedLevel = false;
 
@@ -12,13 +13,8 @@ public class Goal : MonoBehaviour
     {
         if (finishedLevel)
         {
-            Vector3 relativePos = (transform.position + new Vector3(0, 2.5f, 0)) - Player.transform.position;
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-
-            Quaternion current = Player.transform.localRotation;
-
-            Player.transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime);
-            Player.transform.Translate(0, 0, .5f * Time.deltaTime);
+            Camera.main.GetComponent<CameraLook>().LevelBeat();
+            Player.transform.RotateAround(rotateTarget.position, Vector3.up, 90 * Time.deltaTime);
         }
     }
 
@@ -28,6 +24,12 @@ public class Goal : MonoBehaviour
         time.text = gameObject.GetComponent<StopWatch>().timerText.text;
         PlayerUI.SetActive(false);
 
+        if (Player.transform.localScale != Vector3.one)
+        {
+            Player.transform.localScale = Vector3.one;
+            Player.transform.localPosition = (Player.transform.localPosition - rotateTarget.localPosition) + Vector3.up * 2;
+        }
+        Player.transform.position += Vector3.up;
         Player.GetComponent<BallMove>().canMove = false;
         Player.GetComponent<Rigidbody>().useGravity = false;
         Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
