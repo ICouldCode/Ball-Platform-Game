@@ -32,7 +32,7 @@ public class Goal : MonoBehaviour
         Player.transform.position += Vector3.up;
         Player.GetComponent<BallMove>().canMove = false;
         Player.GetComponent<Rigidbody>().useGravity = false;
-        Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Player.GetComponent<Rigidbody>().isKinematic = true;
         finishedLevel = true;
     }
 }

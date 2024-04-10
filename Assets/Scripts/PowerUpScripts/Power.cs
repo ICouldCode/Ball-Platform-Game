@@ -39,7 +39,11 @@ public class Power : ScriptableObject
                 break;
             case "MegaSphere":
                 Player.GetComponent<BallMove>().AbilityDuration = powerUpMultiplier;
-                Player.transform.localScale *= 5f;
+                Player.GetComponent<BallMove>().MaxAbilityDuration = powerUpMultiplier;
+                if(Player.transform.localScale != new Vector3(5.0f, 5.0f, 5.0f))
+                {
+                    Player.transform.localScale *= 5f;
+                } 
                 break;
 
         }

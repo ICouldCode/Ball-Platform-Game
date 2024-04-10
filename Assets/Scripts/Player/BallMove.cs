@@ -13,23 +13,29 @@ public class BallMove : MonoBehaviour
     private bool Grounded;
     [HideInInspector]public bool canMove = true;
 
-    float Speed {  get; set; }
-    float Jump { get; set; }
+    public float Speed = 3;
+    public float Jump = 10;
+
+    private float originalSpeed;
+    private float originalJump;
+    private Vector3 originalScale;
 
     public enum Gravity{
         UP, DOWN
     }
 
-    [HideInInspector]public Gravity gravity;
+    [HideInInspector]public Gravity gravity = Gravity.UP;
 
-    [HideInInspector]public float AbilityDuration = -1;
+    [HideInInspector]public float AbilityDuration = 0;
+    [HideInInspector] public float MaxAbilityDuration = 0;
+    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        Speed = 3;
-        Jump = 10;
-        gravity = Gravity.UP;
+        originalScale = transform.localScale;
+        originalJump = Jump;
+        originalSpeed = Speed;
     }
 
     private void Update()
@@ -37,16 +43,24 @@ public class BallMove : MonoBehaviour
         if (!canMove) { return; }
 
         Movement();
-        if(AbilityDuration > -1) { TimedAbilities(); }
+        if(AbilityDuration >= 0) { TimedAbilities(); }
     }
 
     private void TimedAbilities()
     {
         AbilityDuration -= Time.deltaTime;
-        if(AbilityDuration < 0)
+        if(AbilityDuration <= 0)
         {
-            transform.localScale = Vector3.one;
+            ResetValues();
         }
+    }
+
+    private void ResetValues()
+    {
+        Speed = originalSpeed;
+        Jump = originalJump;
+        transform.localScale = originalScale;
+        MaxAbilityDuration = 0;
     }
 
     private void Movement()

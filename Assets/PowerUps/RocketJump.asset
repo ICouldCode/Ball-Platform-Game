@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RocketJump
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  powerUpIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  powerUpIcon: {fileID: 21300000, guid: 90d9df5d2644b524a984a82ef41d9f4c, type: 3}
   powerUpName: Rocket Jump
   powerUpMultiplier: 30
