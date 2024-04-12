@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class LevelSelection : MonoBehaviour
 {
-    private int x;
+    private int x = 0;
+
+    [SerializeField] TextMeshProUGUI levelName;
 
     void Update()
     {
@@ -27,7 +27,21 @@ public class LevelSelection : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(i == x);
         }
+
+        if(x == 0) { levelName.text = "Tutorial"; }
+        else { levelName.text = "Level " + x; }
     }
+
+    public void LeftArrow()
+    {
+        x--;
+    }
+
+    public void RightArrow()
+    {
+        x++;
+    }
+
 
     public void StartLevel()
     {

@@ -13,7 +13,7 @@ public class MenuBallRotating : MonoBehaviour
 
     private void Update()
     {
-        rot.y += Time.deltaTime;
+        rot.y += Time.deltaTime * 10;
         transform.rotation = Quaternion.Euler(rot);   
     }
 }

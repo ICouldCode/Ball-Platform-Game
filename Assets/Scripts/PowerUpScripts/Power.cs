@@ -4,12 +4,15 @@ using UnityEngine;
 public class Power : ScriptableObject
 {
     public GameObject Player;
+
     public Sprite powerUpIcon;
     public string powerUpName;
     public float powerUpMultiplier;
+    public AudioClip soundFX;
     
-    public void UsePower()
+    public void UsePower(AudioSource AS)
     {
+
         switch (powerUpName)
         {
             case "Rocket Jump":
@@ -47,5 +50,8 @@ public class Power : ScriptableObject
                 break;
 
         }
+
+        AS.clip = soundFX;
+        AS.Play();
     }
 }

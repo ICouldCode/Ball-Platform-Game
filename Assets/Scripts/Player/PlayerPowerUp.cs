@@ -21,7 +21,7 @@ public class PlayerPowerUp : MonoBehaviour
 
     private void UsePower()
     {
-        powerUp.UsePower();
+        powerUp.UsePower(GameManager.Instance.soundEffectsSource);
         powerUpIcon.sprite = null;
         powerUpIcon.color = new Color(255, 255, 255, 0);
         powerUp = null;
